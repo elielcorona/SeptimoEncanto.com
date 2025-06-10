@@ -1,0 +1,65 @@
+
+:root {
+  --verde-principal: #1D4035;
+  --arena: #F5EBDD;
+  --oro: #C2A65C;
+  --salvia: #6B8F83;
+  --grafito: #2A2A2A;
+  --marfil: #F9F7F4;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--marfil) !important;
+  color: var(--grafito);
+}
+
+.logo {
+  mix-blend-mode: multiply;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-link {
+  color: var(--verde-principal) !important;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  transform: scale(1.1);
+  color: var(--grafito) !important;
+}
+
+.agenda-btn {
+  border-color: var(--salvia);
+  color: var(--salvia);
+}
+
+.agenda-btn:hover {
+  background-color: var(--salvia);
+  color: white;
+}
+
+.btn-floating {
+  background-color: var(--verde-principal) !important;
+  color: white !important;
+  border: none !important;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn-floating:hover {
+  transform: scale(1.1);
+  background-color: var(--salvia);
+}
+
