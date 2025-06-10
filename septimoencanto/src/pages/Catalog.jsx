@@ -1,4 +1,4 @@
-// src/pages/Catalog.jsx (alineando filtros y categorías en una sola barra)
+// src/pages/Catalog.jsx
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import products from '../data/products';
@@ -6,6 +6,7 @@ import ProductCard from '../components/ui/ProductCard';
 import CategoryNav from '../components/catalog/CategoryNav';
 import ProductModal from '../components/catalog/ProductModal';
 import CombinedFilters from '../components/catalog/CombinedFilters';
+import { motion } from 'framer-motion';
 
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
@@ -25,24 +26,52 @@ export default function Catalog() {
     return true;
   });
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <main className="py-5">
       <Container>
-        <h1 className="text-center mb-4">Catálogo</h1>
-        <div className="d-flex flex-wrap align-items-center justify-content-center gap-3 mb-4">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
+          <h1 className="text-center mb-4">Catálogo</h1>
+        </motion.div>
+
+        <motion.div
+          className="d-flex flex-wrap align-items-center justify-content-center gap-3 mb-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
           <CategoryNav selected={selectedCategory} onChange={setSelectedCategory} />
           <CombinedFilters filters={filters} onChange={handleFilterChange} />
-        </div>
+        </motion.div>
+
         <Row>
           {filtered.map((prod) => (
-            <Col key={prod.id} xs={6} md={3} className="mb-4">
-              <div onClick={() => setModalProduct(prod)} style={{ cursor: 'pointer' }}>
+            <Col key={prod.id} xs={12} md={6} lg={3} className="pt-5 mb-4">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                onClick={() => setModalProduct(prod)}
+                style={{ cursor: 'pointer' }}
+              >
                 <ProductCard {...prod} />
-              </div>
+              </motion.div>
             </Col>
           ))}
         </Row>
       </Container>
+
       <ProductModal
         show={!!modalProduct}
         onHide={() => setModalProduct(null)}

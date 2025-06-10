@@ -23,7 +23,7 @@ export default function Header() {
               <Nav.Link as={Link} to="/">INICIO</Nav.Link>
               <Nav.Link as={Link} to="/catalogo">CATÁLOGO</Nav.Link>
               <Nav.Link as={Link} to="/servicios">SERVICIOS</Nav.Link>
-              <Nav.Link as={Link} to="/nosotros">NOSOTROS</Nav.Link>
+              <Nav.Link href="#aboutme">SOBRE MÍ</Nav.Link>
             </Nav>
             <div className="d-none d-lg-block">
               <Button

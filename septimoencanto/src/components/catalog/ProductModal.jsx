@@ -5,18 +5,12 @@ import { Modal, Button, Badge } from 'react-bootstrap';
 export default function ProductModal({ show, onHide, product }) {
   if (!product) return null;
 
-  const hasDiscount = product.discount && product.discount > 0;
-  const discountedPrice = hasDiscount ? product.price - (product.price * product.discount / 100) : product.price;
+  const hasDiscount = product.discountPercent && product.discountPercent > 0;
 
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
-        <Modal.Title>
-          {product.title}{' '}
-          {hasDiscount && (
-            <Badge bg="danger" className="ms-2">-{product.discount}%</Badge>
-          )}
-        </Modal.Title>
+        <Modal.Title>{product.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <img src={product.image} alt={product.title} className="img-fluid mb-3" />
@@ -24,11 +18,12 @@ export default function ProductModal({ show, onHide, product }) {
         {hasDiscount ? (
           <p>
             <strong>Precio:</strong>{' '}
-            <span className="text-danger fw-bold me-2">${discountedPrice.toFixed(2)}</span>
-            <small className="text-muted text-decoration-line-through">${product.price.toFixed(2)}</small>
+            <span className="text-danger fw-bold me-2">${product.price.toFixed(2)}</span>
+            <small className="text-muted text-decoration-line-through">${product.priceOriginal.toFixed(2)}</small>{' '}
+            <Badge bg="danger" className="ms-2">-{product.discountPercent}%</Badge>
           </p>
         ) : (
-          <p><strong>Precio:</strong> ${product.price}</p>
+          <p><strong>Precio:</strong> ${product.price.toFixed(2)}</p>
         )}
         <p><strong>Tipo:</strong> {product.type}</p>
         <p><strong>Color:</strong> {product.color}</p>
